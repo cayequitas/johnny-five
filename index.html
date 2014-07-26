@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+
+<body>
+<h1>boton</h1>
+el estado del boton es: <span id="estado"></span>
+	
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+	  var socket = io('http://192.168.0.119:8000');
+	  socket.on('news', function (data) {
+	    console.log(data);
+	    socket.emit('my other event', { my: 'data' });
+	  });
+
+	  socket.on('boton', function (data) {
+	    console.log('boton', data);
+
+	    var ele = document.getElementById('estado')
+	    ele.innerText = data.estado
+	    //socket.emit('my other event', { my: 'data' });
+	  });
+	</script>
+</body>
+</html>
+
